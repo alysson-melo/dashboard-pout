@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    /* 1rem = 10px */
+    font-size: 62.5%;
+}
+
+/*---------------------------------------
+    CUSTOM PROPERTIES ( VARIABLES )             
+-----------------------------------------*/
+
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --background-things: #E5E5E5;
+
+    --primary-400: #9D4EDD;
+    --primary-500: #7B2CBF;
+    --primary-600: #5A189A;
+    --primary-700: #3C096C;
+
+    --secondary-300: #F1DFFF;
+    --secondary-400: #E6BDFE;
+    --secondary-500: #C77DFF;
+
+    --gradient-primary: linear-gradient(180deg, #9D4EDD 0%, #7B2CBF 61.06%);
+    --box_shadow_default: -0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.3);
+}

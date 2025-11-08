@@ -4,522 +4,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Louvor Silos</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(180deg, #7B2CBF 0%, #5A189A 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            max-width: 428px;
-            margin: 0 auto;
-        }
-
-        .header {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #c5c5d8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            border: 3px solid #7B2CBF;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
-            background: #7B2CBF;
-            border-radius: 50%;
-        }
-
-        .project-title {
-            color: white;
-            font-size: 22px;
-            font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-        }
-
-        .content {
-            padding: 20px 15px 120px;
-        }
-
-        .section {
-            margin-bottom: 25px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            color: white;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .ver-todos {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 15px;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            display: flex;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .card-left {
-            background: #5A189A;
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 110px;
-        }
-
-        .card-icon {
-            font-size: 36px;
-            color: white;
-        }
-
-        .card-date {
-            text-align: center;
-            color: white;
-        }
-
-        .card-date-day {
-            font-size: 28px;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .card-date-month {
-            font-size: 26px;
-            font-weight: 700;
-            line-height: 1;
-            margin-top: 2px;
-        }
-
-        .card-date-weekday {
-            font-size: 12px;
-            font-weight: 600;
-            margin-top: 6px;
-        }
-
-        .card-date-time {
-            font-size: 14px;
-            font-weight: 500;
-            margin-top: 2px;
-        }
-
-        .card-content {
-            flex: 1;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .card-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #5A189A;
-            margin-bottom: 6px;
-        }
-
-        .card-subtitle {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .card-stats {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            color: #5A189A;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .card-badge {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #E8E8E8;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 700;
-            color: #888;
-        }
-
-        .bottom-nav-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            max-width: 428px;
-            margin: 0 auto;
-        }
-
-        .bottom-sheet {
-            background: white;
-            border-radius: 25px 25px 0 0;
-            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .drag-handle {
-            width: 100%;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            cursor: pointer;
-            touch-action: none;
-        }
-
-        .drag-handle-icon {
-            width: 35px;
-            height: 4px;
-            background: #D0D0D0;
-            border-radius: 2px;
-        }
-
-        .expanded-menu {
-            padding: 15px 20px;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .bottom-sheet.expanded .expanded-menu {
-            max-height: 250px;
-            opacity: 1;
-        }
-
-        .menu-section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .menu-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 15px;
-        }
-
-        .menu-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
-            color: #333;
-            width: calc(20% - 12px);
-        }
-
-        .menu-icon {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border: 2px solid #5A189A;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #5A189A;
-        }
-
-        .menu-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-align: center;
-            line-height: 1.1;
-        }
-
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 8px 22px;
-            background: white;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            text-decoration: none;
-            color: #5A189A;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 2px 8px;
-        }
-
-        .nav-icon {
-            font-size: 26px;
-        }
-    </style>
+    <title> Dashborad Planning Out </title>
+    <link rel="icon" type="image/png" href="icons/Planning_out_logo_page.png" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon"></div>
-            </div>
-            <div class="project-title">Projeto<br>Louvor Silos</div>
-        </div>
-    </div>
 
-    <div class="content">
-        <div class="section">
+    <header class="header">
+        <div class="header-banner">
+
+            <img src="icons/Planningout_logo.svg" alt="Planning Out logo" class="logo-pout">
+            <div class="texts-title-project">
+                <p>Projeto</p>
+                <div class="titte-project"> Louvor Sibs </div>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- NEWS SECTION -->
+        <section class="section section--news">
+
             <div class="section-header">
-                <h2 class="section-title">Avisos</h2>
-                <a href="#" class="ver-todos">Ver todos</a>
+                <h2 class="section-tittle"> Avisos </h2>
+                <a href="#" class="section-link"> Ver todos </a>
             </div>
-            <div class="card">
-                <div class="card-left">
-                    <div class="card-icon">📄</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Confirmação de escala</div>
-                    <div class="card-subtitle">Toque para expandir</div>
-                </div>
-                <div class="card-badge">+2</div>
-            </div>
-        </div>
 
-        <div class="section">
+            <div class="card-and-bagde">
+
+                <div class="card">
+                    <div class="card-aside">
+                        <img src="icons/newspaper.svg" alt="icons newspaper" class="icon-newspaper">
+                    </div>
+
+                    <div class="card-content">
+                        <h4 class="card-content-tittle"> Confirmação de escala </h4>
+                        <p class="card-content-subtittle"> Toque para expandir </p>
+                    </div>
+                </div>
+
+                <span class="badge"> +2 </span>
+
+            </div>
+
+        </section>
+
+        <!-- MY SCHEDULES SECTION -->
+        <section class="section section--schedules">
+
             <div class="section-header">
-                <h2 class="section-title">Minhas escalas</h2>
-                <a href="#" class="ver-todos">Ver todos</a>
+                <h2 class="section-title"> Minhas escalas </h2>
+                <a href="#" class="section-link"> Ver todos </a>
             </div>
-            <div class="card">
-                <div class="card-left">
-                    <div class="card-date">
-                        <div class="card-date-day">16</div>
-                        <div class="card-date-month">AGO</div>
-                        <div class="card-date-weekday">SAB</div>
-                        <div class="card-date-time">19h30</div>
+
+            <div class="card-and-bagde">
+
+                <div class="card">
+                    <div class="card-aside">
+                        <div class="card-aside-day"></div>
+                        <div class="card-aside-month"></div>
+                        <div class="card-aside-week"></div>
+                        <div class="card-aside-hour"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-content-title"></h3>
+                        <div class="card-content-subtittle"></div>
+                        <div class="card-content-icons">
+                            <div class="card-content-presence">
+                                <img class="card-content-presence-icon" src="icons/thumbs-up-solid-full.svg"
+                                    alt="Thumbs Up" />
+                                <div class="card-content-presence-info"></div>
+                            </div>
+                            <div class="card-content-songs">
+                                <img class="card-content-songs-icon" src="icons/music.svg" alt="musical note" />
+                                <div class="card-content-songs-number"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card-content">
-                    <div class="card-title">Louvorzão</div>
-                    <div class="card-subtitle">Daqui a uma semana</div>
-                    <div class="card-stats">
-                        <div class="stat">👍 6/8</div>
-                        <div class="stat">🎵 4</div>
-                    </div>
-                </div>
-                <div class="card-badge">+3</div>
-            </div>
-        </div>
 
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">Aniversariantes</h2>
-                <a href="#" class="ver-todos">Ver todos</a>
-            </div>
-            <div class="card">
-                <div class="card-left">
-                    <div class="card-icon">🎂</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Ana Karoline</div>
-                    <div class="card-subtitle">13 de Agosto</div>
-                </div>
-                <div class="card-badge">+1</div>
-            </div>
-        </div>
-    </div>
+                <span class="badge"> +3 </span>
 
-    <div class="bottom-nav-container">
-        <div class="bottom-sheet" id="bottomSheet">
-            <div class="drag-handle" id="dragHandle">
-                <div class="drag-handle-icon"></div>
             </div>
 
-            <div class="expanded-menu">
-                <div class="menu-section-title">Avisos</div>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="menu-icon">⚙️</div>
-                        <div class="menu-label">Configu-<br>rações</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-icon">🚫</div>
-                        <div class="menu-label">Indisponi-<br>bilidades</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-icon">👤</div>
-                        <div class="menu-label">Perfil</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-icon">🎯</div>
-                        <div class="menu-label">Projetos</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-icon">⚡</div>
-                        <div class="menu-label">Funções</div>
-                    </div>
-                </div>
-            </div>
+        </section>
 
-            <nav class="bottom-nav">
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">📅</span>
-                    <span>Escala</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">🎵</span>
-                    <span>Repertório</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">🏠</span>
-                    <span>Início</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">💬</span>
-                    <span>Chat</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">👥</span>
-                    <span>Equipes</span>
-                </a>
-            </nav>
-        </div>
-    </div>
 
-    <script>
-        const bottomSheet = document.getElementById('bottomSheet');
-        const dragHandle = document.getElementById('dragHandle');
-
-        let startY = 0;
-        let isDragging = false;
-        let isExpanded = false;
-
-        // Toggle ao clicar
-        dragHandle.addEventListener('click', (e) => {
-            if (!isDragging) {
-                toggleSheet();
-            }
-        });
-
-        function toggleSheet() {
-            isExpanded = !isExpanded;
-            if (isExpanded) {
-                bottomSheet.classList.add('expanded');
-            } else {
-                bottomSheet.classList.remove('expanded');
-            }
-        }
-
-        // Arrastar
-        dragHandle.addEventListener('touchstart', handleDragStart, { passive: true });
-        dragHandle.addEventListener('mousedown', handleDragStart);
-
-        function handleDragStart(e) {
-            startY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
-            isDragging = true;
-        }
-
-        document.addEventListener('touchmove', handleDragMove, { passive: true });
-        document.addEventListener('mousemove', handleDragMove);
-
-        function handleDragMove(e) {
-            if (!isDragging) return;
-        }
-
-        document.addEventListener('touchend', handleDragEnd);
-        document.addEventListener('mouseup', handleDragEnd);
-
-        function handleDragEnd(e) {
-            if (!isDragging) return;
-
-            const endY = e.type === 'touchend' ? e.changedTouches[0].clientY : e.clientY;
-            const diff = startY - endY;
-
-            // Se arrastou mais de 30px
-            if (Math.abs(diff) > 30) {
-                if (diff > 0) {
-                    // Arrastou para cima - expandir
-                    isExpanded = true;
-                    bottomSheet.classList.add('expanded');
-                } else {
-                    // Arrastou para baixo - colapsar
-                    isExpanded = false;
-                    bottomSheet.classList.remove('expanded');
-                }
-            }
-
-            isDragging = false;
-        }
-    </script>
+    </main>
 </body>
 
 </html>
